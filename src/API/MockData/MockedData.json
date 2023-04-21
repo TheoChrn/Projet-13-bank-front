@@ -1,0 +1,136 @@
+{
+  "account": [
+    {
+      "id": 1,
+      "type": "Checking",
+      "amount": "2,082.79",
+      "number": 8349,
+      "description": "Available"
+    },
+    {
+      "id": 2,
+      "type": "Savings",
+      "amount": "10,928.42",
+      "number": 6712,
+      "description": "Available"
+    },
+    {
+      "id": 3,
+      "type": "Savings",
+      "amount": "184.30",
+      "number": 8349,
+      "description": "Current"
+    }
+  ],
+  "transactions": [
+    {
+      "accountId": 1,
+      "id": 1,
+      "date": "June 20th, 2020",
+      "description": "Golden Sun Bakery",
+      "amount": "5.00",
+      "balance": 2082.79
+    },
+    {
+      "accountId": 1,
+      "id": 2,
+      "type": "Checking",
+      "date": "June 20th, 2020",
+      "description": "Golden Sun Bakery",
+      "amount": "10.00",
+      "balance": 2087.79
+    },
+    {
+      "accountId": 1,
+      "id": 3,
+      "type": "Checking",
+      "date": "June 20th, 2020",
+      "description": "Golden Sun Bakery",
+      "amount": "20.00",
+      "balance": 2097.79
+    },
+    {
+      "accountId": 1,
+      "id": 4,
+      "type": "Checking",
+      "date": "June 20th, 2020",
+      "description": "Golden Sun Bakery",
+      "amount": "30.00",
+      "balance": 2117.79
+    },
+    {
+      "accountId": 1,
+      "id": 5,
+      "type": "Checking",
+      "date": "June 20th, 2020",
+      "description": "Golden Sun Bakery",
+      "amount": "40.00",
+      "balance": 2147.79
+    },
+    {
+      "accountId": 1,
+      "id": 6,
+      "type": "Checking",
+      "date": "June 20th, 2020",
+      "description": "Golden Sun Bakery",
+      "amount": "50.00",
+      "balance": 2187.79
+    },
+    {
+      "accountId": 2,
+      "id": 7,
+      "type": "Savings",
+      "date": "June 20th, 2020",
+      "description": "Golden Sun Bakery",
+      "amount": "5.00",
+      "balance": 10928.42
+    },
+    {
+      "accountId": 3,
+      "id": 8,
+      "type": "Credit Card",
+      "date": "June 20th, 2020",
+      "description": "Golden Sun Bakery",
+      "amount": "5.00",
+      "balance": 184.3
+    }
+  ],
+  "infos": [
+    {
+      "transactionId": 1,
+      "type": "Electronic",
+      "category": "Food",
+      "note": ""
+    },
+    {
+      "transactionId": 2,
+      "type": "Electronic",
+      "category": "Food",
+      "note": ""
+    },
+    {
+      "transactionId": 3,
+      "type": "Electronic",
+      "category": "Food",
+      "note": ""
+    },
+    {
+      "transactionId": 4,
+      "type": "Electronic",
+      "category": "Food",
+      "note": ""
+    },
+    {
+      "transactionId": 5,
+      "type": "Electronic",
+      "category": "Food",
+      "note": ""
+    },
+    {
+      "transactionId": 6,
+      "type": "Electronic",
+      "category": "Food",
+      "note": ""
+    }
+  ]
+}

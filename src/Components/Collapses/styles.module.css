@@ -1,0 +1,76 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout:fixed;
+}
+
+.collapse td{
+  padding: 0;
+}
+
+th {
+  color: white;
+}
+
+tbody tr{
+  position: relative;
+  border: 1px solid black;
+  background-color: white;
+}
+
+tbody td {
+  padding: 20px 0;
+  font-weight: bold;
+}
+
+.chevronCol {
+  width: 0;
+}
+
+.collapseBtn {
+  position: absolute;
+  left: 15px;
+  transform: translateY(-50%);
+  top: 50%;
+}
+
+.collapseBtn button  {
+  width: 20px;
+  height: 20px;
+  border: none;
+  outline: none;
+  padding: 0;
+  text-decoration: none;
+  background-color:transparent;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+
+
+.info{
+  display: flex;
+  justify-content: center;
+}
+ul {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  gap: 10px;
+}
+
+li {
+  text-align: start;
+  list-style-type: none;
+}
+
+.pencil {
+  color: #2c3e50;;
+  display: inline-block;
+  transform: rotate(130deg);
+}
+
+.empty span{
+  visibility: hidden;
+}

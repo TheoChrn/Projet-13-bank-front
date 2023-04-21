@@ -1,0 +1,49 @@
+.edit-name {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+ gap: 10px;
+}
+
+.edit-name input {
+  width: 150px;
+  height: 10px;
+  padding: 10px;
+  border-radius: 2px;
+  border: solid 2px grey;
+}
+
+.edit-name input::placeholder{
+  color: silver;
+}
+
+.edit-name button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 25px;
+  border-radius: 2px;
+  padding: 10px;
+  cursor: pointer;
+  border: solid 1px #00bc77;
+  color: #00bc77;;
+  outline: inherit;
+}
+
+.name-input {
+  justify-self: flex-end;
+  grid-row: 1 / 1 ;
+}
+
+.lastName-input {
+  grid-row: 1 / 1 ;
+}
+
+.save-btn{
+  grid-row: 2 / 2 ;
+  justify-self: flex-end;
+}
+
+.cancel-btn{
+  grid-row: 2 / 2 ;
+}
