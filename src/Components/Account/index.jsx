@@ -10,9 +10,9 @@ const Account = () => {
   // Initialize navigate variable
   const navigate = useNavigate();
 
-  const handleClick = (e, id) => {
+  const handleClick = (e, accountId) => {
     e.preventDefault();
-    navigate(`./account/${id}/transactions`);
+    navigate(`./account/${accountId}/transactions`);
   };
 
   return (
@@ -35,7 +35,7 @@ const Account = () => {
               <button
                 className={styles["transaction-button"]}
                 onClick={(e) => {
-                  console.log(e);
+                  console.log(bill);
                   handleClick(e, bill.id);
                 }}
               >

@@ -20,8 +20,8 @@ const useAuth = () => {
    * @function
    * @returns {Promise<void>}
    */
-  const getData = async () => {
-    await axiosInstance
+  const getUserProfile = () => {
+    axiosInstance
       .post("/user/profile", null)
       .then((res) => {
         dispatch(setIsLoading(false));
@@ -63,6 +63,9 @@ const useAuth = () => {
               userLastName: res.data.body.lastName,
             })
           );
+        })
+        .catch((error) => {
+          console.log(error);
         });
     }
   };
@@ -84,7 +87,7 @@ const useAuth = () => {
       });
   };
 
-  return { getData, updateUser, login, isAuthenticated, token };
+  return { getUserProfile, updateUser, login, isAuthenticated, token };
 };
 
 export default useAuth;

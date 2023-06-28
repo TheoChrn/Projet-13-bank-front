@@ -8,17 +8,17 @@ import Collapses from "../../Components/Collapses";
 
 const Transactions = () => {
   // Récupération de l'id dans l'URL
-  const { id } = useParams();
+  const { accountId } = useParams();
 
   // Récupération des données mockés
   const transactions = mockedTransactions.transactions.filter(
-    (transaction) => `${transaction.accountId}` === id
+    (transaction) => `${transaction.accountId}` === accountId
   );
   const transactionHeader = mockedTransactions.account.find(
-    (account) => `${account.id}` === id
+    (account) => `${account.id}` === accountId
   );
   const transactionInfos = mockedTransactions.infos.filter(
-    (info) => `${info.transactionId}` === id
+    (info) => `${info.transactionId}` === accountId
   );
 
   return (

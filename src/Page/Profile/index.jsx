@@ -12,10 +12,10 @@ const Profile = () => {
   const { isLoading } = useSelector((state) => state.user);
 
   // Retrieve function from custom hook
-  const { getData } = useAuth();
+  const { getUserProfile } = useAuth();
 
   useEffect(() => {
-    getData();
+    getUserProfile();
   }, []);
 
   return (

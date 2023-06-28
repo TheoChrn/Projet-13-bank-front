@@ -23,7 +23,7 @@ const App = () => {
   const ROUTE_HOME = "/";
   const ROUTE_CONNEXION = "/connexion";
   const ROUTE_PROFILE = "/profile";
-  const ROUTE_TRANSACTIONS = "/profile/account/:id/transactions";
+  const ROUTE_TRANSACTIONS = "/profile/account/:accountId/transactions";
   const ROUTE_401 = "/401";
 
   return (
