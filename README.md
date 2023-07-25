@@ -23,4 +23,4 @@ This project needs the installation of the Bank-Api which you can find the setup
 1. Download or clone this project
 2. Go to the project folder
 3. Install dependencies with  `npm install`
-4. Run the project
+4. Run the project `npm run dev`
