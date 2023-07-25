@@ -12,11 +12,6 @@ Utilisez une API pour un compte utilisateur bancaire avec React
 
 This project needs the installation of the [Bank-API](https://github.com/TheoChrn/Project-10-Bank-API)
 
-```bash
-  npm install my-project
-  cd my-project
-```
-
 ## Skills assessment
 
 - Implement a state management within a React App
