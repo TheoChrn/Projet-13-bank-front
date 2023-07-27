@@ -51,3 +51,33 @@
     flex: 0;
   }
 }
+
+@media (max-width: 767px) {
+  .account-amount {
+    font-size: 2rem;
+  }
+
+  .transactions {
+    padding: 2% 5%;
+  }
+}
+
+
+@media (max-width: 375px) {
+  th, td {
+    font-size: 9px;
+  }
+}
+
+
+@media (min-width:375px) and (max-width: 424px) {
+  th, td {
+    font-size: 10px;
+  }
+}
+
+@media (min-width:425px) and (max-width: 767px) {
+  th, td {
+    font-size: 12px;
+  }
+}

@@ -34,8 +34,7 @@ const Account = () => {
             >
               <button
                 className={styles["transaction-button"]}
-                onClick={(e) => {
-                  console.log(bill);
+                onClick={(e) => {;
                   handleClick(e, bill.id);
                 }}
               >
