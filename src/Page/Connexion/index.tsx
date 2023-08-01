@@ -1,14 +1,14 @@
-import React from "react";
 import Navigation from "../../Components/Navigation";
 import Footer from "../../Components/Footer";
 import Login from "../../Components/Login";
 import styles from "./styles.module.css";
-import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { useAppSelector } from "../../Hooks/hook";
+import { userSelector } from "../../feature/user.slice";
 
 const Connexion = () => {
   // Retrieve token from redux state
-  const token = useSelector((state) => state.user.userToken);
+  const token = useAppSelector((state) => userSelector(state).userToken);
 
   return (
     <div className={"container"}>

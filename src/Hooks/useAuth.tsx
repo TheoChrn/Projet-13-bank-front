@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from "react-redux";
 import {
   setUserToken,
   setErrorMessage,
@@ -6,13 +5,27 @@ import {
   setIsLoading,
   setUserNames,
 } from "../feature/user.slice";
+import { useAppDispatch, useAppSelector } from "./hook";
+import { userSelector } from "../feature/user.slice";
 import axiosCongig from "../API/axiosConfig";
+
+export interface FormDataParams {
+  email: string;
+  password: string;
+}
+
+interface NewUserNamesParams {
+  newUserFirstName: string;
+  newUserLastName: string;
+}
 
 const useAuth = () => {
   const axiosInstance = axiosCongig();
-  const dispatch = useDispatch();
-  const token = useSelector((state) => state.user.userToken);
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const dispatch = useAppDispatch();
+  const token = useAppSelector((state) => userSelector(state).userToken);
+  const isAuthenticated = useAppSelector(
+    (state) => userSelector(state).isAuthenticated
+  );
 
   /**
    * Send a HTTP POST request to API and retrieve userNames
@@ -39,11 +52,13 @@ const useAuth = () => {
 
   /**
    * Send a HTTP PUT request to API and update user data in redux store and API
-   * @param {string} newUserFirstName
-   * @param {string} newUserLastName
+   * @param {NewUserNamesParams} newUserNames 
    * @returns {<void>}
    */
-  const updateUser = (newUserFirstName, newUserLastName) => {
+  const updateUser = ({
+    newUserFirstName,
+    newUserLastName,
+  }: NewUserNamesParams) => {
     if (
       newUserFirstName.trim().length === 0 ||
       newUserLastName.trim().length === 0
@@ -72,14 +87,15 @@ const useAuth = () => {
 
   /**
    * Send a request to API and update state with the recieved token
-   * @param {Object} formData The data from the connexion form
+   * @param {FormDataParams} formData The data from the connexion form
    * @returns {void}
    */
-  const login = (formData) => {
+  const login = (formData: FormDataParams) => {
     axiosInstance
       .post("/user/login", formData)
       .then((res) => {
         dispatch(setUserToken(res.data.body.token));
+        dispatch(setErrorMessage(null));
       })
       .catch((error) => {
         console.log(error);

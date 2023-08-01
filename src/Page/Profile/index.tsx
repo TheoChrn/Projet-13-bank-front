@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import styles from "./styles.module.css";
 import Navigation from "../../Components/Navigation";
 import Account from "../../Components/Account";
 import Footer from "../../Components/Footer";
-import { useSelector } from "react-redux";
 import useAuth from "../../Hooks/useAuth";
 import Header from "./Components/Header";
+import { useEffect } from "react";
+import { useAppSelector } from "../../Hooks/hook";
+import { userSelector } from "../../feature/user.slice";
 
 const Profile = () => {
   // Retrieve user Data from the redux state
-  const { isLoading } = useSelector((state) => state.user);
+  const isLoading = useAppSelector((state) => userSelector(state).isLoading);
 
   // Retrieve function from custom hook
   const { getUserProfile } = useAuth();

@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./styles.module.css";
 import Navigation from "../../Components/Navigation/index";
 import Features from "../../Components/Features";

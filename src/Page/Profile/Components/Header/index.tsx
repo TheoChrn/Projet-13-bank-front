@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import styles from "./styles.module.css";
 import { setIsEditing } from "../../../../feature/user.slice";
 import EditForm from "../EditForm";
+import { useAppDispatch, useAppSelector } from "../../../../Hooks/hook";
+import { userSelector } from "../../../../feature/user.slice";
 
 const Header = () => {
   // Retrieve data from the redux state
-  const userNames = useSelector((state) => state.user.userNames);
-  const { isEditing } = useSelector((state) => state.user);
+  const userNames = useAppSelector((state) => userSelector(state).userNames);
+  const isEditing = useAppSelector((state) => userSelector(state).isEditing);
   const { userFirstName, userLastName } = userNames;
 
   // Initialize state variables
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   /**
    * Show the edit inputs and reset them before typing
@@ -24,7 +24,7 @@ const Header = () => {
 
   return (
     <div>
-      {!isEditing ? (
+      {!isEditing && userFirstName !== null && userLastName !== null ? (
         <div className={"header"}>
           <h1>
             Welcome back
@@ -40,7 +40,10 @@ const Header = () => {
           </button>
         </div>
       ) : (
-        <EditForm userFirstName={userFirstName} userLastName={userLastName} />
+        userFirstName !== null &&
+        userLastName !== null && (
+          <EditForm userFirstName={userFirstName} userLastName={userLastName} />
+        )
       )}
     </div>
   );

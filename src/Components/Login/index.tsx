@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import styles from "./styles.module.css";
-import { setErrorMessage } from "../../feature/user.slice";
-import useAuth from "../../Hooks/useAuth";
+import { userSelector, setErrorMessage } from "../../feature/user.slice";
+import useAuth, { FormDataParams } from "../../Hooks/useAuth";
+import { useAppDispatch, useAppSelector } from "../../Hooks/hook";
 
 const Login = () => {
   // Retrieve error state from redux store
-  const errorMessage = useSelector((state) => state.user.errorMessage);
+  const errorMessage = useAppSelector(
+    (state) => userSelector(state).errorMessage
+  );
 
   // Retrieve function from custom hook
   const { login } = useAuth();
 
   // Initialize state variable
-  const dispacth = useDispatch();
-  const [hasError, setHasError] = useState(null);
-  const [formData, setFormData] = useState({
+  const dispatch = useAppDispatch();
+  const [formData, setFormData] = useState<FormDataParams>({
     email: "",
     password: "",
   });
@@ -24,10 +25,10 @@ const Login = () => {
   /**
    * Handles the changes in the input elements
    * Set the input's values in the formData
-   * @param {object} e
+   * @param {React.ChangeEvent<HTMLInputElement>} e
    * @returns {<void>}
    */
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setFormData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
@@ -38,28 +39,33 @@ const Login = () => {
    * Handles the submission of the login form.
    * Verify if email and password are valid
    * Retrieves a token after posting Data using HTTP POST request
-   * @param {object} e
+   * @param {React.FormEvent<HTMLFormElement>} e
    * @returns {<void>}
    */
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-
-    if (!regex.test(email)) {
-      setHasError(true);
-      dispacth(setErrorMessage("Error: The email format is incorrect"));
-    } else if (password.length === 0) {
-      setHasError(true);
-      dispacth(setErrorMessage("Error: Password cannot be blank"));
+    if (formData.email.length === 0) {
+      dispatch(setErrorMessage("Error: email cannot be blank"));
+    } else if (!regex.test(formData.email)) {
+      dispatch(
+        setErrorMessage(
+          "Error: email doesn't respect username@domain.extension"
+        )
+      );
+    } else if (formData.password.length === 0) {
+      dispatch(setErrorMessage("Error: password cannot be blank"));
     } else {
-      setHasError(false);
       login(formData);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className={hasError ? styles["error"] : ""}>
+    <form
+      onSubmit={handleSubmit}
+      className={errorMessage ? styles["error"] : ""}
+    >
       <div className={styles["input-wrapper"]}>
         <label htmlFor="email">Email</label>
         <input
@@ -87,7 +93,7 @@ const Login = () => {
         <label htmlFor="remember-me">Remember me</label>
       </div>
       <button className={styles["sign-in-button"]}>Sign In</button>
-      {hasError ? <small>{errorMessage}</small> : ""}
+      {errorMessage ? <small>{errorMessage}</small> : ""}
     </form>
   );
 };

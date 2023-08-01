@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./styles.module.css";
 import ChatIcon from "../../designs/img/icon-chat.png";
 import MoneyIcon from "../../designs/img/icon-money.png";

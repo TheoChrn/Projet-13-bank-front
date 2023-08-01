@@ -1,4 +1,3 @@
-import React from "react";
 import Home from "./Page/Home";
 import Connexion from "./Page/Connexion";
 import {
@@ -11,14 +10,22 @@ import {
 import Profile from "./Page/Profile";
 import ErrorPage from "./Page/ErrorPage";
 import Transactions from "./Page/Transactions";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "./Hooks/hook";
+import { userSelector } from "./feature/user.slice"
 
-const PrivateRoute = ({ auth, routeRedirect }) => {
+type PrivateRouteProps = {
+  auth: boolean;
+  routeRedirect: string;
+};
+
+const PrivateRoute = ({ auth, routeRedirect }: PrivateRouteProps) => {
   return auth ? <Outlet /> : <Navigate to={routeRedirect} />;
 };
 
 const App = () => {
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const isAuthenticated = useAppSelector(
+    (state) => userSelector(state).isAuthenticated
+  );
 
   const ROUTE_HOME = "/";
   const ROUTE_CONNEXION = "/connexion";
@@ -39,7 +46,7 @@ const App = () => {
             />
           }
         >
-          <Route exact path={ROUTE_CONNEXION} element={<Connexion />} />
+          <Route path={ROUTE_CONNEXION} element={<Connexion />} />
         </Route>
         <Route
           path={ROUTE_PROFILE}
@@ -47,7 +54,7 @@ const App = () => {
             <PrivateRoute auth={isAuthenticated} routeRedirect={ROUTE_401} />
           }
         >
-          <Route exact path={ROUTE_PROFILE} element={<Profile />} />
+          <Route path={ROUTE_PROFILE} element={<Profile />} />
         </Route>
         <Route
           path={ROUTE_TRANSACTIONS}
@@ -55,7 +62,7 @@ const App = () => {
             <PrivateRoute auth={isAuthenticated} routeRedirect={ROUTE_401} />
           }
         >
-          <Route exact path={ROUTE_TRANSACTIONS} element={<Transactions />} />
+          <Route path={ROUTE_TRANSACTIONS} element={<Transactions />} />
         </Route>
         <Route
           path={ROUTE_401}
@@ -66,7 +73,7 @@ const App = () => {
             />
           }
         >
-          <Route exact path={ROUTE_401} element={<ErrorPage />} />
+          <Route path={ROUTE_401} element={<ErrorPage />} />
         </Route>
         <Route path="*" element={<Navigate to={ROUTE_HOME} />} />
       </Routes>

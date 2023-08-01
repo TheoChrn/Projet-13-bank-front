@@ -1,6 +1,8 @@
-import React from "react";
+type ChevronProps = {
+  rotate?: string;
+};
 
-const Chevron = ({ rotate }) => {
+const Chevron = ({ rotate }: ChevronProps) => {
   return (
     <svg
       fill="#000000"

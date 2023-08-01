@@ -1,18 +1,23 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import useAuth from "../../../../Hooks/useAuth";
 import styles from "./styles.module.css";
-import { useDispatch } from "react-redux";
 import { setIsEditing } from "../../../../feature/user.slice";
+import { useAppDispatch } from "../../../../Hooks/hook";
 
-const EditForm = ({ userFirstName, userLastName }) => {
+interface UserNamesParams {
+  userFirstName: string;
+  userLastName: string;
+}
+
+const EditForm = ({ userFirstName, userLastName }: UserNamesParams) => {
   // Retrieve function from custom hook
   const { updateUser } = useAuth();
 
   // Initialize state variable
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [newUserNames, setNewUserNames] = useState({
-    newUserFirstName: "",
-    newUserLastName: "",
+    newUserFirstName: userFirstName,
+    newUserLastName: userLastName,
   });
   const { newUserFirstName, newUserLastName } = newUserNames;
 
@@ -21,7 +26,8 @@ const EditForm = ({ userFirstName, userLastName }) => {
    * @param {Event} input
    * @returns {void}
    */
-  const handleChange = (input) => {
+  const handleChange = (input: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(input.target.value);
     setNewUserNames((prevState) => ({
       ...prevState,
       [input.target.name]:
@@ -43,20 +49,20 @@ const EditForm = ({ userFirstName, userLastName }) => {
           type="text"
           className={styles["name-input"]}
           name={"newUserFirstName"}
-          placeholder={userFirstName}
+          value={newUserFirstName}
           onChange={handleChange}
         />
         <input
           type="text"
           className={styles["lastName-input"]}
           name={"newUserLastName"}
-          placeholder={userLastName}
+          value={newUserLastName}
           onChange={handleChange}
         />
         <button
           className={styles["save-btn"]}
           onClick={() => {
-            updateUser(newUserFirstName, newUserLastName);
+            updateUser({ newUserFirstName, newUserLastName });
           }}
         >
           Save

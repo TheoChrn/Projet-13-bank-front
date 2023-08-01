@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { NavLink } from "react-router-dom";
 import Logo from "../../designs/img/argentBankLogo.png";
-import { useDispatch, useSelector } from "react-redux";
-import { setLogout } from "../../feature/user.slice";
+import { setLogout, userSelector } from "../../feature/user.slice";
+import { useAppDispatch, useAppSelector } from "../../Hooks/hook";
 
 const Navigation = () => {
-  const dispatch = useDispatch();
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-  const userFirstName = useSelector(
-    (state) => state.user.userNames.userFirstName
+  const dispatch = useAppDispatch();
+  const isAuthenticated = useAppSelector(
+    (state) => userSelector(state).isAuthenticated
+  );
+  const userFirstName = useAppSelector(
+    (state) => userSelector(state).userNames.userFirstName
   );
 
   return (

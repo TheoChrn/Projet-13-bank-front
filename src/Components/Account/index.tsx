@@ -1,7 +1,11 @@
-import React from "react";
 import styles from "./styles.module.css";
 import mockedTransactions from "../../API/MockData/MockedData.json";
 import { useNavigate } from "react-router-dom";
+
+type HandleClickParams = {
+  e: React.MouseEvent<HTMLButtonElement, MouseEvent>;
+  accountId: number;
+};
 
 const Account = () => {
   // Initialize mocked data
@@ -10,7 +14,7 @@ const Account = () => {
   // Initialize navigate variable
   const navigate = useNavigate();
 
-  const handleClick = (e, accountId) => {
+  const handleClick = ({ e, accountId }: HandleClickParams): void => {
     e.preventDefault();
     navigate(`./account/${accountId}/transactions`);
   };
@@ -34,8 +38,8 @@ const Account = () => {
             >
               <button
                 className={styles["transaction-button"]}
-                onClick={(e) => {;
-                  handleClick(e, bill.id);
+                onClick={(e) => {
+                  handleClick({ e, accountId: bill.id });
                 }}
               >
                 View transactions
