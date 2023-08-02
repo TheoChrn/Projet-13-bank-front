@@ -29,7 +29,7 @@ const initialState: User = {
 
 export const userSlice = createSlice({
   name: "user",
-  initialState: {} as User,
+  initialState: initialState as User,
   reducers: {
     setUserToken: (state, action: PayloadAction<string>) => {
       state.userToken = action.payload;
@@ -40,8 +40,12 @@ export const userSlice = createSlice({
       state,
       action: PayloadAction<{ userFirstName: string; userLastName: string }>
     ) => {
-      state.userNames.userFirstName = action.payload.userFirstName;
-      state.userNames.userLastName = action.payload.userLastName;
+      return {
+        ...state,
+        userNames: {
+          ...action.payload,
+        },
+      };
     },
     setLogout: (state) => {
       Object.assign(state, initialState);

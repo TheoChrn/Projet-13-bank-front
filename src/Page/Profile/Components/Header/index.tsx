@@ -4,11 +4,23 @@ import EditForm from "../EditForm";
 import { useAppDispatch, useAppSelector } from "../../../../Hooks/hook";
 import { userSelector } from "../../../../feature/user.slice";
 
+interface UserNames {
+  userFirstName: string | null;
+  userLastName: string | null;
+}
+
 const Header = () => {
   // Retrieve data from the redux state
-  const userNames = useAppSelector((state) => userSelector(state).userNames);
+  const isAuthenticated = useAppSelector(
+    (state) => userSelector(state).isAuthenticated
+  );
   const isEditing = useAppSelector((state) => userSelector(state).isEditing);
-  const { userFirstName, userLastName } = userNames;
+  const { userFirstName, userLastName }: UserNames = useAppSelector((state) => {
+    const userNames = userSelector(state).userNames;
+    return isAuthenticated
+      ? userNames
+      : { userFirstName: null, userLastName: null };
+  });
 
   // Initialize state variables
   const dispatch = useAppDispatch();

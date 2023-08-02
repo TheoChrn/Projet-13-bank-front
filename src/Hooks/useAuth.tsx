@@ -37,6 +37,7 @@ const useAuth = () => {
     axiosInstance
       .post("/user/profile", null)
       .then((res) => {
+        console.log(res);
         dispatch(setIsLoading(false));
         dispatch(
           setUserNames({
@@ -52,7 +53,7 @@ const useAuth = () => {
 
   /**
    * Send a HTTP PUT request to API and update user data in redux store and API
-   * @param {NewUserNamesParams} newUserNames 
+   * @param {NewUserNamesParams} newUserNames
    * @returns {<void>}
    */
   const updateUser = ({
