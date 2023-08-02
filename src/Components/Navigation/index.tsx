@@ -9,9 +9,10 @@ const Navigation = () => {
   const isAuthenticated = useAppSelector(
     (state) => userSelector(state).isAuthenticated
   );
-  const userFirstName = useAppSelector(
-    (state) => userSelector(state).userNames.userFirstName
-  );
+  const userFirstName = useAppSelector((state) => {
+    const userNames = userSelector(state).userNames;
+    return userNames ? userNames.userFirstName : null;
+  });
 
   return (
     <nav className={styles["main-nav"]}>
@@ -23,7 +24,7 @@ const Navigation = () => {
         />
         <h1 className={"sr-only"}>Argent Bank</h1>
       </NavLink>
-      {isAuthenticated ? (
+      {isAuthenticated && userFirstName ? (
         <div>
           <NavLink to="/profile" className={styles["main-nav-item"]}>
             <i className={"fa fa-user-circle"}></i>
