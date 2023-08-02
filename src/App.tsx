@@ -23,9 +23,6 @@ const PrivateRoute = ({ auth, routeRedirect }: PrivateRouteProps) => {
 };
 
 const App = () => {
-  window.alert(
-    "This project needs an API to work you can find the link in this project's documentation"
-  );
   const isAuthenticated = useAppSelector(
     (state) => userSelector(state).isAuthenticated
   );
